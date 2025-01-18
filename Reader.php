@@ -10,12 +10,15 @@ class Reader {
         $this->email = $email;
         $this->borrowedBooks = [];
     }
+
     public function getName() {
         return $this->name;
     }
+
     public function getEmail() {
         return $this->email;
     }
+
     public function borrowBook($book) {
         if ($book->getAvailability()) {
             $this->borrowedBooks[] = $book;
@@ -25,6 +28,10 @@ class Reader {
             echo "Книга '{$book->getTitle()}' недоступна.\n";
         }
     }
+    public function getBorrowedBooks() {
+        return $this->borrowedBooks;
+    }
+
     public function returnBook($book) {
         $index = array_search($book, $this->borrowedBooks);
         if ($index !== false) {
